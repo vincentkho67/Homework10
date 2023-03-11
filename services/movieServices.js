@@ -1,4 +1,4 @@
-const MovieRepository = require("../repositories/movieRepository")
+const MovieRepository = require("../repositories/movieRepository");
 
 class MovieService {
 
@@ -10,7 +10,7 @@ class MovieService {
             next(err)
         }
         
-    }
+    };
 
     static findById = async (id, next) => {
         try {
@@ -19,7 +19,7 @@ class MovieService {
         } catch(err) {
             next(err);
         }
-    }
+    };
 
     static createMovie = async (params) => {
         try {
@@ -28,7 +28,17 @@ class MovieService {
         } catch(err) {
             next(err);
         }
-    }
+    };
+
+    static updateMovie = async (params, next) => {
+        try {
+            console.log("MASUUUK SERVICE")
+            const data = await MovieRepository.updateMovie(params, next);
+            return data;
+        } catch(err) {
+            next(err);
+        }
+    };
 
     static deleteMovie = async (id, next) => {
         try {
@@ -37,7 +47,7 @@ class MovieService {
             next(err)
         }
 
-    }
+    };
 }
 
-module.exports = MovieService
+module.exports = MovieService;

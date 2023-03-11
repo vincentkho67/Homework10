@@ -1,18 +1,16 @@
-const MovieService = require("../services/movieServices")
+const MovieService = require("../services/movieServices");
 class MovieController {
 
 
     static findMovies = async(req, res, next) => {
-       
        try {
             const data = await MovieService.findMovies(next);
             res.status(200).json(data);
        } catch(err) {
         next(err);
-       }
+       };
         
-        
-    }
+    };
 
     static findById = async (req, res, next) => {
 
@@ -25,12 +23,11 @@ class MovieController {
                 next({ name: "ErrorNotFound"});
             }
             
-            
-            
         } catch(err) {
             next(err);
-        }
-    }
+        };
+    };
+
     static createMovie = async (req, res, next) => {
         try {
             
@@ -41,25 +38,28 @@ class MovieController {
         } catch(err) {
             next(err)
         }
-    }
+    };
     
     static updateMovie = async (req, res, next) => {
         try {
+            console.log("masuuuuuuuuuuuuuuuuuk")
             const {id} = req.params;
             const {title, genres, year} = req.body;
+
+            const params = {id, title, genres, year};
+
+            const data = await MovieService.updateMovie(params, next)
+
+            if(data) {
+                res.status(200).json(data) 
+            } else {
+                throw {name: "ErrorNotFound"}
+            }
     
-            const updateMovies = `
-                UPDATE movies
-                SET title = $1,
-                genres = $2,
-                year = $3,
-                WHERE id = $4;
-            `
-            
         } catch(err) {
             next(err)
-        }
-    }
+        };
+    };
     
     static deleteMovie = async (req, res, next) => {
         try{
@@ -75,7 +75,7 @@ class MovieController {
         } catch(err) {
             next(err);
         }
-    }
-}
+    };
+};
 
 module.exports = MovieController;

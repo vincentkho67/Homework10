@@ -62,7 +62,8 @@ class Movie {
         }
     };
 
-    static updateMovie = async (id, params, next) => {
+    static updateMovie = async (params, next) => {
+        console.log("MASOOOOOOOOOOK ")
         try {
           const updateQuery = `
             UPDATE movies
@@ -76,16 +77,19 @@ class Movie {
             params.title,
             params.genres,
             params.year,
-            id,
+            params.id,
           ]);
           if (data.rows.length === 0) {
+            console.log("masuk else")
             next({ name: "ErrorNotFound" });
           } else {
+            
             return data.rows[0];
           }
         } catch (err) {
           next(err);
         }
+        console.log(params);
     };
 
     static deleteMovie = async (id, next) => {

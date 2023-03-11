@@ -1,4 +1,4 @@
-const UserService = require("../services/userService")
+const UserService = require("../services/userService");
 class UserController {
 
 
@@ -12,7 +12,7 @@ class UserController {
        }
         
         
-    }
+    };
 
     static findById = async (req, res, next) => {
 
@@ -30,7 +30,8 @@ class UserController {
         } catch(err) {
             next(err);
         }
-    }
+    };
+
     static createUser = async (req, res, next) => {
         try {
             
@@ -41,7 +42,7 @@ class UserController {
         } catch(err) {
             next(err)
         }
-    }
+    };
 
     static updateUser = async (req, res, next) => {
         try {
@@ -60,7 +61,7 @@ class UserController {
         } catch(err) {
             next(err)
         }
-    }
+    };
     
     static deleteUser = async (req, res, next) => {
         try{
@@ -76,7 +77,7 @@ class UserController {
         } catch(err) {
             next(err);
         }
-    }
-}
+    };
+};
 
 module.exports = UserController;

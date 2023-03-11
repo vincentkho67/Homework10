@@ -1,4 +1,4 @@
-const Movie = require("../models/movie")
+const Movie = require("../models/movie");
 
 class MovieRepository {
 
@@ -10,7 +10,7 @@ class MovieRepository {
             next(err);
         }
         
-    }
+    };
 
     static findById = async (id, next) => {
         try {
@@ -19,7 +19,7 @@ class MovieRepository {
         } catch(err){
             next(err)
         }
-    }
+    };
 
     static createMovie = async (params, next) => {
         try {
@@ -28,29 +28,30 @@ class MovieRepository {
         } catch(err) {
             next(err);
         }
-    }
-    static updateMovie = async (id, params, next) => {
+    };
+
+    static updateMovie = async (params, next) => {
         try {
-            const movie = await Movie.findById(id, next);
+            console.log("MASUK REPOSITORY")
+            const movie = await Movie.updateMovie(params, next);
             if (!movie) {
-                const err = new Error(`Movie with id ${id} not found`);
+                const err = new Error(`Movie with id ${params.id} not found`);
                 err.status = 404;
                 throw err;
-            }
-            Object.assign(movie, params);
-            const updatedMovie = await movie.save();
-            return updatedMovie;
+            } 
+            return movie;
         } catch(err) {
             next(err);
         }
-    }
+    };
+
     static deleteMovie = async (id, next) => {
         try {
             return Movie.deleteMovie(id, next)
         } catch(err) {
             next(err)
         }
-    }
-}
+    };
+};
 
 module.exports = MovieRepository

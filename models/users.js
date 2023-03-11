@@ -1,5 +1,5 @@
-const pool = require("../config/config")
-const UserService = require("../services/userService")
+const pool = require("../config/config");
+const UserService = require("../services/userService");
 
 class User {
     static getUser = async (next) => {
@@ -17,7 +17,7 @@ class User {
             next(err)
 
         }
-    } 
+    };
 
     static findById = async (id, next) => {
 
@@ -41,7 +41,7 @@ class User {
             next(err)
 
         }
-    }
+    };
 
     static createUser = async (params, next) => {
         try{
@@ -60,7 +60,7 @@ class User {
         } catch(err) {
             next(err)
         }
-    }
+    };
 
     static updateMovie = async (id, params, next) => {
         try {
@@ -103,6 +103,6 @@ class User {
             next(err)
         }
     }
-}
+};
 
 module.exports = User;

@@ -1,4 +1,4 @@
-const User = require("../models/users")
+const User = require("../models/users");
 
 class UserRepository {
 
@@ -10,7 +10,7 @@ class UserRepository {
             next(err);
         }
         
-    }
+    };
 
     static findById = async (id, next) => {
         try {
@@ -19,7 +19,7 @@ class UserRepository {
         } catch(err){
             next(err)
         }
-    }
+    };
 
     static createUser = async (params, next) => {
         try {
@@ -28,7 +28,7 @@ class UserRepository {
         } catch(err) {
             next(err);
         }
-    }
+    };
 
     static updateUser = async (id, params, next) => {
         try {
@@ -44,7 +44,7 @@ class UserRepository {
         } catch(err) {
             next(err);
         }
-    }
+    };
 
     static deleteUser = async (id, next) => {
         try {
@@ -52,7 +52,7 @@ class UserRepository {
         } catch(err) {
             next(err)
         }
-    }
+    };
 }
 
 module.exports = UserRepository

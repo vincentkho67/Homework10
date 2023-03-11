@@ -46,21 +46,23 @@ class UserController {
 
     static updateUser = async (req, res, next) => {
         try {
+            
             const {id} = req.params;
             const {email, gender, password, role} = req.body;
+
+            const params = {id,email, gender, password, role};
+
+            const data = await UserService.updateUser(params, next)
+
+            if(data) {
+                res.status(200).json(data) 
+            } else {
+                throw {name: "ErrorNotFound"}
+            }
     
-            const updateMovies = `
-                UPDATE users
-                SET email = $1,
-                gender = $2,
-                password = $3,
-                role = $4,
-                WHERE id = $5;
-            `
-            
         } catch(err) {
             next(err)
-        }
+        };
     };
     
     static deleteUser = async (req, res, next) => {

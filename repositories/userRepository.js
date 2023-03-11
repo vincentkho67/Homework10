@@ -30,17 +30,16 @@ class UserRepository {
         }
     };
 
-    static updateUser = async (id, params, next) => {
+    static updateUser = async (params, next) => {
         try {
-            const user = await User.findById(id, next);
+            
+            const user = await User.updateUser(params, next);
             if (!user) {
-                const err = new Error(`User with id ${id} not found`);
+                const err = new Error(`user with id ${params.id} not found`);
                 err.status = 404;
                 throw err;
-            }
-            Object.assign(user, params);
-            const updatedUser = await user.save();
-            return updatedUser;
+            } 
+            return user;
         } catch(err) {
             next(err);
         }

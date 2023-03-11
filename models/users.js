@@ -62,22 +62,23 @@ class User {
         }
     };
 
-    static updateMovie = async (id, params, next) => {
+    static updateUser = async (params, next) => {
         try {
           const updateQuery = `
             UPDATE users
             SET email = $1,
                 gender = $2,
                 password = $3,
-                role = $4,
+                role = $4
             WHERE id = $5
             RETURNING *
           `;
           const data = await pool.query(updateQuery, [
-            params.title,
-            params.genres,
-            params.year,
-            id,
+            params.email,
+            params.gender,
+            params.password,
+            params.role,
+            params.id
           ]);
           if (data.rows.length === 0) {
             next({ name: "ErrorNotFound" });

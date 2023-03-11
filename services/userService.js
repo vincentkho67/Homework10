@@ -1,4 +1,4 @@
-const UserRepository = require("../repositories/userRepository")
+const UserRepository = require("../repositories/userRepository");
 
 class UserService {
 
@@ -10,7 +10,7 @@ class UserService {
             next(err)
         }
         
-    }
+    };
 
     static findById = async (id, next) => {
         try {
@@ -19,7 +19,7 @@ class UserService {
         } catch(err) {
             next(err);
         }
-    }
+    };
 
     static createUser = async (params) => {
         try {
@@ -28,16 +28,17 @@ class UserService {
         } catch(err) {
             next(err);
         }
-    }
+    };
 
-    static updateUser = async (id, params, next) => {
+    static updateUser = async (params, next) => {
         try {
-            const data = await UserRepository.updateUser(id, params, next);
+            console.log("MASUUUK SERVICE")
+            const data = await UserRepository.updateUser(params, next);
             return data;
         } catch(err) {
             next(err);
         }
-    }
+    };
 
     static deleteUser = async (id, next) => {
         try {
@@ -46,7 +47,7 @@ class UserService {
             next(err)
         }
 
-    }
-}
+    };
+};
 
-module.exports = UserService
+module.exports = UserService;

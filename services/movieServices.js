@@ -32,7 +32,7 @@ class MovieService {
 
     static updateMovie = async (params, next) => {
         try {
-            console.log("MASUUUK SERVICE")
+            
             const data = await MovieRepository.updateMovie(params, next);
             return data;
         } catch(err) {
